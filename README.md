@@ -28,3 +28,32 @@
 
 
 ## [サンプルボット作成](https://developers.line.biz/ja/docs/messaging-api/building-sample-bot-with-heroku/)
+
+### [heroku CLI をインストール](https://devcenter.heroku.com/articles/heroku-cli)
+
+```
+$ sudo snap install --classic heroku
+```
+
+
+
+### Echoサンプルボットをデプロイする
+
+- [コンソール](https://developers.line.biz/console/)で、チャネルシークレットとチャネルアクセストークンを確認します。
+- GitHubの`sample-spring-boot-echo`ディレクトリの[READMEファイル](https://github.com/line/line-bot-sdk-java/tree/master/sample-spring-boot-echo#step-2)に含まれる**［Deploy to Heroku］**ボタンをクリックします。
+- 手順1で確認した値を使って、［App name］（任意）、［LINE_BOT_CHANNEL_TOKEN］、および［LINE_BOT_CHANNEL_SECRET］の各フィールドに入力し、**［Deploy app］**をクリックします。次の手順で使うので、アプリ名は記録しておきます。アプリがデプロイされるまでしばらく待ちます。
+- 「`https://{HEROKU_APP_NAME}.herokuapp.com/callback`」というURL形式で、Webhook URLを[コンソール](https://developers.line.biz/console/)に入力します。
+  注：`{HEROKU_APP_NAME}`は手順3で指定したアプリ名です。
+- コンソールの［チャネル基本設定］ページにあるQRコードを読み取って、ボットが関連づけられている公式アカウントをLINEで友だち追加します。
+- LINE公式アカウントにLINEでテキストメッセージを送り、同じメッセージが返ってくることを確認します。
+
+
+
+#### ログを見る
+
+```
+$ heroku login
+$ heroku logs --tail --app linebot-test-syamozi
+```
+
+- LINE からメッセージを送信するとそのままテキストメッセージが返却されることを確認
